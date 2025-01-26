@@ -29,6 +29,24 @@ const locations = [
     label: "Kilimani",
   },
 ];
+const unitTypes = [
+  {
+    value: "studio",
+    label: "Studio",
+  },
+  {
+    value: "1bedroom",
+    label: "1 Bedroom",
+  },
+  {
+    value: "2bedroom",
+    label: "2 Bedroom",
+  },
+  {
+    value: "villa",
+    label: "Villa",
+  },
+];
 
 const ReservationForm = () => {
   const {
@@ -38,7 +56,9 @@ const ReservationForm = () => {
   } = useForm();
 
   const [location, setLocation] = React.useState("");
+  const [unitType, setUnitType] = React.useState("");
   const [isPopoverOpen, setIsPopoverOpen] = React.useState(false);
+  const [isUnitPopoverOpen, setIsUnitPopoverOpen] = React.useState(false);
 
   const navigate = useNavigate();
 
@@ -50,7 +70,7 @@ const ReservationForm = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="mt-8 p-6 bg-white bg-opacity-90 rounded-lg shadow-lg w-full max-w-4xl flex flex-col md:flex-row justify-between items-center gap-4"
+      className="mt-8 p-6 bg-white bg-opacity-90 rounded-lg shadow-lg w-full max-w-5xl flex flex-col md:flex-row justify-between items-center gap-4"
     >
       {/* Location Input */}
       <div className="flex flex-col w-full md:w-auto">
@@ -102,6 +122,56 @@ const ReservationForm = () => {
         </Popover>
       </div>
 
+      {/* Unit Type Input  */}
+      <div className="flex flex-col w-full md:w-auto">
+        <label className="text-gray-700">Unit Type</label>
+        <Popover open={isUnitPopoverOpen} onOpenChange={setIsUnitPopoverOpen}>
+          <PopoverTrigger asChild>
+            <Button
+              variant="outline"
+              role="combobox"
+              aria-expanded={isUnitPopoverOpen}
+              className="w-[200px] justify-between"
+            >
+              {unitType
+                ? unitTypes.find((unit) => unit.value === unitType)?.label
+                : "Select Unit Type..."}
+              <ChevronsUpDown className="opacity-50" />
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent className="w-[200px] p-0">
+            <Command>
+              <CommandInput placeholder="Search Unit..." />
+              <CommandList>
+                <CommandEmpty>No Unit Type found.</CommandEmpty>
+                <CommandGroup>
+                  {unitTypes.map((unit) => (
+                    <CommandItem
+                      key={unit.value}
+                      value={unit.value}
+                      onSelect={(currentValue) => {
+                        setUnitType(
+                          currentValue === unitType ? "" : currentValue
+                        );
+                        setIsPopoverOpen(false);
+                      }}
+                    >
+                      {unit.label}
+                      <Check
+                        className={cn(
+                          "ml-auto",
+                          unitType === unit.value ? "opacity-100" : "opacity-0"
+                        )}
+                      />
+                    </CommandItem>
+                  ))}
+                </CommandGroup>
+              </CommandList>
+            </Command>
+          </PopoverContent>
+        </Popover>
+      </div>
+
       {/* Check-in Date Input */}
       <div className="flex flex-col w-full md:w-auto">
         <label className="text-gray-700">Check-in Date</label>
@@ -134,7 +204,7 @@ const ReservationForm = () => {
           type="submit"
           className="bg-black text-white px-6 py-2 rounded-md w-full hover:bg-gray-800"
         >
-          Get Started
+          Search
         </button>
       </div>
     </form>

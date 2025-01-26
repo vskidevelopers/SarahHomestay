@@ -1,8 +1,10 @@
 import HomeBanner from "./components/HomeBanner";
 import ReservationForm from "./components/ReservationForm";
-import Rooms from "./pages/Rooms";
+
+import AboutUsSection from "./sections/AboutUsSection";
 import RoomSection from "./sections/RoomSection";
-import RoomTypes from "./sections/RoomTypes";
+
+import Testimonials from "./sections/Testimonials";
 import TopHotelsSection from "./sections/TopHotelsSection";
 
 function App() {
@@ -13,13 +15,15 @@ function App() {
         <div className="w-full py-4 flex justify-center items-center absolute -mt-[19rem] md:-mt-28 ">
           <ReservationForm />
         </div>
-
+        <AboutUsSection />
+        {/* categories section */}
         <div className=" py-32">
           <TopHotelsSection />
         </div>
+        {/* Featured Home */}
         <RoomSection />
         <div className="w-full">
-          <RoomTypes />
+          <Testimonials />
         </div>
       </div>
     </>
