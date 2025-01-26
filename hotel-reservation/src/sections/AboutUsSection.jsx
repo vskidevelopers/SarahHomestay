@@ -1,5 +1,6 @@
 import React from "react";
 import CountUp from "react-countup";
+import { Home, Users, Star } from "lucide-react";
 
 const AboutUsSection = () => {
   return (
@@ -20,23 +21,32 @@ const AboutUsSection = () => {
             </p>
             <div className="flex justify-between max-w-md mx-auto lg:mx-0">
               <div className="text-center">
+                <div className="flex justify-center mb-2">
+                  <Home className="w-12 h-12 text-blue-600" /> {/* Home Icon */}
+                </div>
                 <p className="text-6xl font-bold text-blue-600">
-                  <CountUp start={0} end={10} duration={2.5} /> {"+"}
+                  <CountUp start={0} end={1234} duration={2.5} /> {"+"}
                 </p>
-                <p className="text-gray-700">Homes</p>
+                <p className="text-gray-700">Rooms</p>
               </div>
               <div className="text-center">
+                <div className="flex justify-center mb-2">
+                  <Users className="w-12 h-12 text-blue-600" />{" "}
+                  {/* Users Icon */}
+                </div>
                 <p className="text-6xl font-bold text-blue-600">
-                  <CountUp start={0} end={500} duration={2.5} /> {"+"}
+                  <CountUp start={0} end={1234} duration={2.5} /> {"+"}
+                </p>
+                <p className="text-gray-700">Staffs</p>
+              </div>
+              <div className="text-center">
+                <div className="flex justify-center mb-2">
+                  <Star className="w-12 h-12 text-blue-600" /> {/* Star Icon */}
+                </div>
+                <p className="text-6xl font-bold text-blue-600">
+                  <CountUp start={0} end={1234} duration={2.5} /> {"+"}
                 </p>
                 <p className="text-gray-700">Clients</p>
-              </div>
-              <div className="text-center">
-                <p className="text-6xl font-bold text-blue-600">
-                  <CountUp start={0} end={100} duration={2.5} />
-                  {"+"}
-                </p>
-                <p className="text-gray-700">Reviews</p>
               </div>
             </div>
             <button className="mt-8 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition duration-300">

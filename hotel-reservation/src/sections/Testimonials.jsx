@@ -90,35 +90,35 @@ export default function Testimonials() {
   const reviews = [
     {
       id: 1,
-      name: "Sarah Johnson",
-      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=sarah",
+      name: "Sophia Carter",
+      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=sophia",
       rating: 5,
       review:
-        "This product exceeded my expectations! The quality is outstanding and the customer service was excellent.",
+        "Staying at Sarah Homestay felt like a dream! The rooms were spotless, the beds super comfortable, and the staff incredibly welcoming. Highly recommend for a peaceful getaway!",
     },
     {
       id: 2,
-      name: "Michael Chen",
-      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=michael",
+      name: "Ethan Brown",
+      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=ethan",
       rating: 4,
       review:
-        "Great value for money. Would definitely recommend to others looking for a reliable solution.",
+        "The location was perfect—close to all the main attractions yet peaceful and quiet. The hospitality was exceptional, and I'll definitely be back again!",
     },
     {
       id: 3,
-      name: "Emma Davis",
-      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=emma",
+      name: "Olivia Martin",
+      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=olivia",
       rating: 5,
       review:
-        "Absolutely love it! The features are exactly what I needed, and it's so easy to use.",
+        "I loved every minute of my stay at Sarah Homestay! The homey vibe, cozy decor, and warm service made it unforgettable. The breakfast was a delightful bonus!",
     },
     {
       id: 4,
-      name: "James Wilson",
-      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=james",
+      name: "Liam Walker",
+      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=liam",
       rating: 4,
       review:
-        "Very impressed with the quality and attention to detail. A fantastic product overall.",
+        "Sarah Homestay offered a relaxing retreat with all the amenities I needed. The attention to detail and the friendly staff made my trip stress-free and enjoyable.",
     },
   ];
 
