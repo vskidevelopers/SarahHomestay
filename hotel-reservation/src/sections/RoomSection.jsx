@@ -20,8 +20,8 @@ const RoomSection = () => {
         {/* Image Section */}
         <div className="relative">
           <img
-            src="https://scontent.fnbo10-1.fna.fbcdn.net/v/t39.30808-6/449124185_792461506415899_7889414116639670666_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_ohc=X8Zj1V49uAAQ7kNvgGdzipA&_nc_zt=23&_nc_ht=scontent.fnbo10-1.fna&_nc_gid=A8fdgkWdlILJyXr_3XGtMod&oh=00_AYBxzhcDvK7jKsYukpCWcg4sE9L7I-OyYM9BGkz4gtkDGA&oe=6792A380"
-            alt="Lake-view King Size Room"
+            src="https://firebasestorage.googleapis.com/v0/b/sarah-homestay.firebasestorage.app/o/web%20assets%2FIMG-20250122-WA0027.jpg?alt=media&token=44bd27d0-52e3-4e37-ad5e-899383757da4"
+            alt="lavish studio apartment"
             className="w-full h-full object-cover"
           />
         </div>

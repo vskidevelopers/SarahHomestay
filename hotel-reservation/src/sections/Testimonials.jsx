@@ -94,7 +94,7 @@ export default function Testimonials() {
       avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=sophia",
       rating: 5,
       review:
-        "Staying at Sarah Homestay felt like a dream! The rooms were spotless, the beds super comfortable, and the staff incredibly welcoming. Highly recommend for a peaceful getaway!",
+        "I stayed in the one-bedroom apartment in Kilimani, and it was perfect! 🏙️ The decor was modern, the bed was so comfy, and I loved how quiet the area was despite being so central. Definitely a 5-star experience! 🌟",
     },
     {
       id: 2,
@@ -102,7 +102,7 @@ export default function Testimonials() {
       avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=ethan",
       rating: 4,
       review:
-        "The location was perfect—close to all the main attractions yet peaceful and quiet. The hospitality was exceptional, and I'll definitely be back again!",
+        "We booked a villa in Nanyuki for a family retreat, and it was absolutely stunning! 🏡✨ The views of Mount Kenya were breathtaking, and the private garden was perfect for our kids to play. I wish the Wi-Fi had been a bit faster, but overall, a wonderful stay! 🌄",
     },
     {
       id: 3,
@@ -110,7 +110,7 @@ export default function Testimonials() {
       avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=olivia",
       rating: 5,
       review:
-        "I loved every minute of my stay at Sarah Homestay! The homey vibe, cozy decor, and warm service made it unforgettable. The breakfast was a delightful bonus!",
+        "The studio apartment in Kilimani was just what I needed for a short business trip. 🖥️ It was cozy, clean, and had all the amenities I could ask for. Plus, the check-in process was super smooth. I’d definitely book again! 💼",
     },
     {
       id: 4,
@@ -118,9 +118,11 @@ export default function Testimonials() {
       avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=liam",
       rating: 4,
       review:
-        "Sarah Homestay offered a relaxing retreat with all the amenities I needed. The attention to detail and the friendly staff made my trip stress-free and enjoyable.",
+        "We stayed at the villa in Nanyuki for a weekend getaway, and it was amazing! 🐾🌿 The spacious living area, outdoor BBQ setup, and proximity to nature made it unforgettable. The only downside was that it rained, so we couldn't fully enjoy the pool. Still, I’d recommend it to anyone looking for a peaceful escape! 🌧️🔥",
     },
   ];
+  
+  
 
   return (
     <div className="min-h-screen bg-background p-8 flex flex-col gap-8 items-center justify-center">

@@ -9,19 +9,19 @@ function TopHotelsSection() {
     {
       title: "Kilimani 1 Bedrooms",
       imageUrl:
-        "https://scontent.fnbo9-1.fna.fbcdn.net/v/t39.30808-6/449210207_794899509505432_6712595482820437597_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=833d8c&_nc_ohc=sP4lvMtq_BgQ7kNvgEfPV3h&_nc_zt=23&_nc_ht=scontent.fnbo9-1.fna&_nc_gid=Ac_HNDOjIsQpkYNuX7bKx-Q&oh=00_AYBrxJYjuB262m2wycStOuEg60-VISn3AY8mX_CS8LytEg&oe=67928454",
+        "https://firebasestorage.googleapis.com/v0/b/sarah-homestay.firebasestorage.app/o/web%20assets%2FIMG-20250122-WA0019.jpg?alt=media&token=a89b674d-3402-4f79-8bc8-76c5764ffeb1",
       description: "A luxury experience.",
     },
     {
       title: "Kilimani Studios",
       imageUrl:
-        "https://scontent.fnbo10-1.fna.fbcdn.net/v/t39.30808-6/448640822_789008196761230_3420697524755947412_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_ohc=wGZkCivzK3wQ7kNvgH1N9fr&_nc_zt=23&_nc_ht=scontent.fnbo10-1.fna&_nc_gid=AdJlGg4chz_FkKwttPJYbdj&oh=00_AYDrPxTfUu_kHy4Y0II-uEi02OgHNvkeFBUOoGBLXx0UJw&oe=67928380",
+        "https://firebasestorage.googleapis.com/v0/b/sarah-homestay.firebasestorage.app/o/web%20assets%2FIMG-20250124-WA0012.jpg?alt=media&token=396b247e-5f8e-4457-8af0-61a22ae2c3af",
       description: "Stunning City views.",
     },
     {
-      title: "Kilimani 2 Bedrooms",
+      title: "Nanyuki Villas",
       imageUrl:
-        "https://scontent.fnbo10-1.fna.fbcdn.net/v/t39.30808-6/437089173_750706800591370_665872303567978995_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=833d8c&_nc_ohc=IxbTGgQLyS4Q7kNvgEzFGuM&_nc_zt=23&_nc_ht=scontent.fnbo10-1.fna&_nc_gid=ARvTsItFAp3ssDRUHKtyIVP&oh=00_AYDjWN9q53j6ZlbA1p3szQL0L6euyIuAUOX00UMvExSUMA&oe=67928C2F",
+        "https://firebasestorage.googleapis.com/v0/b/sarah-homestay.firebasestorage.app/o/web%20assets%2FIMG-20241028-WA0001.jpg?alt=media&token=695f725c-9d2b-4b75-a644-66aec53c46ed",
       description: "Relax, You are Home",
     },
   ];
