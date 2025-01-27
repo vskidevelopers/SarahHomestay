@@ -74,7 +74,7 @@ const ReservationForm = () => {
     >
       
 {/* Location and Unit Type Inputs */}
-<div className="flex flex-col md:flex-row gap-4 w-full">
+<div className="flex flex-row gap-4 w-full">
   {/* Location Input */}
   <div className="flex flex-col w-full md:w-auto">
     <label className="text-gray-700">Select Location</label>
