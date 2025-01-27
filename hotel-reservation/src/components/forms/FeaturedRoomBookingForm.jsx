@@ -21,139 +21,136 @@ function FeaturedRoomBookingForm() {
             Room Booking Form
           </h2>
     
-          {/* Name */}
-          <div className="flex flex-col">
-            <label className="text-gray-700 font-medium">Full Name</label>
-            <input
-              type="text"
-              {...register("name", { required: "Name is required" })}
-              className={`border rounded-lg px-4 py-2 ${
-                errors.name ? "border-red-500" : "border-gray-300"
-              }`}
-              placeholder="Enter your full name"
-            />
-            {errors.name && (
-              <span className="text-red-500 text-sm mt-1">
-                {errors.name.message}
-              </span>
-            )}
-          </div>
-    
-          {/* Email */}
-          <div className="flex flex-col">
-            <label className="text-gray-700 font-medium">Email Address</label>
-            <input
-              type="email"
-              {...register("email", {
-                required: "Email is required",
-                pattern: {
-                  value: /^\S+@\S+$/i,
-                  message: "Invalid email format",
-                },
-              })}
-              className={`border rounded-lg px-4 py-2 ${
-                errors.email ? "border-red-500" : "border-gray-300"
-              }`}
-              placeholder="Enter your email address"
-            />
-            {errors.email && (
-              <span className="text-red-500 text-sm mt-1">
-                {errors.email.message}
-              </span>
-            )}
-          </div>
-    
-          {/* Phone Number */}
-          <div className="flex flex-col">
-            <label className="text-gray-700 font-medium">Phone Number</label>
-            <input
-              type="tel"
-              {...register("phone", {
-                required: "Phone number is required",
-                pattern: {
-                  value: /^[0-9]{10,15}$/,
-                  message: "Invalid phone number",
-                },
-              })}
-              className={`border rounded-lg px-4 py-2 ${
-                errors.phone ? "border-red-500" : "border-gray-300"
-              }`}
-              placeholder="Enter your phone number"
-            />
-            {errors.phone && (
-              <span className="text-red-500 text-sm mt-1">
-                {errors.phone.message}
-              </span>
-            )}
-          </div>
-    
-          {/* Check-In Date */}
-          <div className="flex flex-col">
-            <label className="text-gray-700 font-medium">Check-In Date</label>
-            <input
-              type="date"
-              {...register("checkInDate", { required: "Check-in date is required" })}
-              className={`border rounded-lg px-4 py-2 ${
-                errors.checkInDate ? "border-red-500" : "border-gray-300"
-              }`}
-            />
-            {errors.checkInDate && (
-              <span className="text-red-500 text-sm mt-1">
-                {errors.checkInDate.message}
-              </span>
-            )}
-          </div>
-    
-          {/* Check-Out Date */}
-          <div className="flex flex-col">
-            <label className="text-gray-700 font-medium">Check-Out Date</label>
-            <input
-              type="date"
-              {...register("checkOutDate", { required: "Check-out date is required" })}
-              className={`border rounded-lg px-4 py-2 ${
-                errors.checkOutDate ? "border-red-500" : "border-gray-300"
-              }`}
-            />
-            {errors.checkOutDate && (
-              <span className="text-red-500 text-sm mt-1">
-                {errors.checkOutDate.message}
-              </span>
-            )}
-          </div>
-    
-          {/* Number of Guests */}
-          <div className="flex flex-col">
-            <label className="text-gray-700 font-medium">Number of Guests</label>
-            <input
-              type="number"
-              {...register("guests", {
-                required: "Number of guests is required",
-                min: { value: 1, message: "At least 1 guest is required" },
-              })}
-              className={`border rounded-lg px-4 py-2 ${
-                errors.guests ? "border-red-500" : "border-gray-300"
-              }`}
-              placeholder="Enter number of guests"
-            />
-            {errors.guests && (
-              <span className="text-red-500 text-sm mt-1">
-                {errors.guests.message}
-              </span>
-            )}
-          </div>
-    
-          {/* Special Requirements */}
-          <div className="flex flex-col">
-            <label className="text-gray-700 font-medium">
-              Special Requirements / Notes
-            </label>
-            <textarea
-              {...register("notes")}
-              className="border rounded-lg px-4 py-2 border-gray-300"
-              placeholder="Add any additional notes (optional)"
-              rows="4"
-            ></textarea>
-          </div>
+    {/* Name */}
+    <div className="md:col-span-2">
+          <label className="block text-gray-700 font-medium mb-1">Name</label>
+          <input
+            type="text"
+            {...register("name", { required: "Name is required" })}
+            className="w-full p-2 border border-gray-300 rounded-lg"
+            placeholder="Enter your name"
+          />
+          {errors.name && (
+            <span className="text-red-500 text-sm">{errors.name.message}</span>
+          )}
+        </div>
+
+        {/* Email */}
+        <div>
+          <label className="block text-gray-700 font-medium mb-1">Email</label>
+          <input
+            type="email"
+            {...register("email", { required: "Email is required" })}
+            className="w-full p-2 border border-gray-300 rounded-lg"
+            placeholder="Enter your email"
+          />
+          {errors.email && (
+            <span className="text-red-500 text-sm">{errors.email.message}</span>
+          )}
+        </div>
+
+        {/* Phone Number */}
+        <div>
+          <label className="block text-gray-700 font-medium mb-1">
+            Phone Number
+          </label>
+          <input
+            type="tel"
+            {...register("phone", {
+              required: "Phone number is required",
+              pattern: {
+                value: /^[0-9]{10}$/,
+                message: "Enter a valid 10-digit phone number",
+              },
+            })}
+            className="w-full p-2 border border-gray-300 rounded-lg"
+            placeholder="Enter your phone number"
+          />
+          {errors.phone && (
+            <span className="text-red-500 text-sm">{errors.phone.message}</span>
+          )}
+        </div>
+
+        {/* Check-in Date */}
+        <div>
+          <label className="block text-gray-700 font-medium mb-1">
+            Check-in Date
+          </label>
+          <input
+            type="date"
+            {...register("checkIn", { required: "Check-in date is required" })}
+            className="w-full p-2 border border-gray-300 rounded-lg"
+          />
+          {errors.checkIn && (
+            <span className="text-red-500 text-sm">{errors.checkIn.message}</span>
+          )}
+        </div>
+
+        {/* Check-out Date */}
+        <div>
+          <label className="block text-gray-700 font-medium mb-1">
+            Check-out Date
+          </label>
+          <input
+            type="date"
+            {...register("checkOut", { required: "Check-out date is required" })}
+            className="w-full p-2 border border-gray-300 rounded-lg"
+          />
+          {errors.checkOut && (
+            <span className="text-red-500 text-sm">
+              {errors.checkOut.message}
+            </span>
+          )}
+        </div>
+
+        {/* Number of Guests */}
+        <div className="md:col-span-2">
+          <label className="block text-gray-700 font-medium mb-1">
+            Number of Guests
+          </label>
+          <input
+            type="number"
+            {...register("guests", { required: "Number of guests is required" })}
+            className="w-full p-2 border border-gray-300 rounded-lg"
+            placeholder="Enter number of guests"
+          />
+          {errors.guests && (
+            <span className="text-red-500 text-sm">
+              {errors.guests.message}
+            </span>
+          )}
+        </div>
+
+{/* Room Type */}
+<div className="md:col-span-2">
+  <label className="block text-gray-700 font-medium mb-1">
+    Room Type
+  </label>
+  <select
+    {...register("roomType")}
+    className="w-full p-2 border border-gray-300 rounded-lg bg-gray-100 cursor-not-allowed"
+    disabled
+  >
+    <option value="">Select a room type</option>
+    <option value="studio">Studio</option>
+    <option value="one-bedroom">One Bedroom</option>
+    <option value="villa">Villa</option>
+  </select>
+</div>
+
+
+        {/* Extra Notes */}
+        <div className="md:col-span-2">
+          <label className="block text-gray-700 font-medium mb-1">
+            Special Requirements/Notes
+          </label>
+          <textarea
+            {...register("notes")}
+            className="w-full p-2 border border-gray-300 rounded-lg"
+            placeholder="Enter any special requests or notes"
+            rows="4"
+          ></textarea>
+        </div>
     
           {/* Submit Button */}
           <button
