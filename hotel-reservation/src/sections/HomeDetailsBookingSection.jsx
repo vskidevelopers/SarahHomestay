@@ -1,6 +1,6 @@
 import HomeBookingForm from "@/components/forms/HomeBookingForm";
 import { Phone } from "lucide-react";
-imp
+
 
 const HomeDetailsBookingSection = ({ price = 3500 }) => {
   return (
