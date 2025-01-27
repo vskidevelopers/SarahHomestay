@@ -51,7 +51,7 @@ const AboutUsSection = () => {
                 <p className="text-gray-700">Reviews</p>
               </div>
             </div>
-            <Link to="/explore" className="mt-8 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition duration-300">
+            <Link to="/explore" className="mt-10 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition duration-300">
               EXPLORE MORE
             </Link>
           </div>

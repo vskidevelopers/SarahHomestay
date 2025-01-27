@@ -45,7 +45,7 @@ const HomesListingCard = () => {
           </p>
           <div className="flex items-center justify-between">
             <span className="font-bold text-lg">$19.99</span>
-            <Link to="home-details/1" className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+            <Link to="/home-details/1" className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
               Buy Now
             </Link>
           </div>
