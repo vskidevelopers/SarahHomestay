@@ -87,22 +87,23 @@ function RoomManagement() {
                                 <Card className="flex items-center justify-center h-full" x-chunk="dashboard-05-chunk-0">
                                     <div className="w-full flex flex-col gap-4">
                                         <CardHeader className="pb-3">
-                                            <CardTitle>All Rooms</CardTitle>
-                                            <CardDescription className="max-w-lg text-balance leading-relaxed ">
-                                                Discover a wide range of accommodations tailored to your needs. Whether you're looking for luxury, comfort, or affordability, our diverse selection of rooms ensures you find the perfect stay for your next getaway.
-                                            </CardDescription>
+                                            <CardTitle>Homes</CardTitle>
+                                            <CardDescription className="max-w-lg text-balance leading-relaxed">
+    Efficiently manage your rental homes with ease. From listing properties and tracking bookings to overseeing guest details and payments, Sarah Homestay provides the tools you need to streamline operations and offer exceptional experiences.
+</CardDescription>
+
                                         </CardHeader>
                                         <CardFooter className="mt-auto">
 
                                             <DialogTrigger asChild>
-                                                <Button>Add A Room</Button>
+                                                <Button>Add A Home</Button>
                                             </DialogTrigger>
                                         </CardFooter>
 
                                         <DialogContent>
                                             <DialogHeader>
                                                 <DialogTitle className="text-center py-9">
-                                                    Add A Room
+                                                    Add A Home
                                                 </DialogTitle>
                                             </DialogHeader>
                                             <AddRoomForm />

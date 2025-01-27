@@ -100,11 +100,10 @@ const router = createBrowserRouter(
           <Route index element={<AdminDashboard />} />
 
           {/* Booking Management */}
-          <Route path="profile/:hotelId" element={<HotelProfile />} />
           <Route path="hotels" element={<HotelsList />} />
 
           {/* Room Management */}
-          <Route path="rooms" element={<RoomManagement />}>
+          <Route path="homes" element={<RoomManagement />}>
             <Route index element={<RoomList />} />
             <Route path="manage" element={<ManageRooms />} />
             <Route path="create" element={<RoomCreation />} />
