@@ -130,6 +130,7 @@ function FeaturedRoomBookingForm() {
     {...register("roomType")}
     className="w-full p-2 border border-gray-300 rounded-lg bg-gray-100 cursor-not-allowed"
     disabled
+     defaultValue="studio"
   >
     <option value="">Select a room type</option>
     <option value="studio">Studio</option>

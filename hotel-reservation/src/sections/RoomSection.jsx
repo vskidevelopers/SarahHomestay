@@ -87,7 +87,7 @@ const RoomSection = () => {
               Book Now
             </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent >
         <DialogHeader>
           <DialogTitle>Book This Room</DialogTitle>
 
