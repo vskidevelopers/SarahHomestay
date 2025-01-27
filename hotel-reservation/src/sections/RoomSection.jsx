@@ -87,7 +87,7 @@ const RoomSection = () => {
               Book Now
             </Button>
       </DialogTrigger>
-      <DialogContent >
+      <DialogContent className="w-full" >
         <DialogHeader>
           <DialogTitle>Book This Room</DialogTitle>
 
