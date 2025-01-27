@@ -1,6 +1,7 @@
 import React from "react";
 
 import { Bed, Bath, Wifi, Star } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const HomesListingCard = () => {
   return (
@@ -8,7 +9,7 @@ const HomesListingCard = () => {
       <div className="relative">
         <img
           className="w-full"
-          src="https://images.unsplash.com/photo-1523275335684-37898b6baf30"
+          src="https://firebasestorage.googleapis.com/v0/b/sarah-homestay.firebasestorage.app/o/web%20assets%2FIMG-20250124-WA0017.jpg?alt=media&token=7f633a1d-1bbc-4322-ab16-50df53c07e78"
           alt="Product Image"
         />
       </div>
@@ -44,9 +45,9 @@ const HomesListingCard = () => {
           </p>
           <div className="flex items-center justify-between">
             <span className="font-bold text-lg">$19.99</span>
-            <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+            <Link to="home-details/1" className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
               Buy Now
-            </button>
+            </Link>
           </div>
         </div>
       </div>

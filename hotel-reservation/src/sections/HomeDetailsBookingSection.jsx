@@ -31,7 +31,7 @@ const HomeDetailsBookingSection = ({ price = 3500 }) => {
         </p>
         <div className="flex items-center gap-2 p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
           <Phone className="w-5 h-5 text-gray-600" />
-          <span className="font-medium">+254 700 000 000</span>
+          <span className="font-medium">+254 722 323 471</span>
         </div>
       </div>
     </div>

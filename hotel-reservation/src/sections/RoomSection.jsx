@@ -68,21 +68,22 @@ const RoomSection = () => {
 
           {/* Price and Button */}
           <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4">
-            {/* Short Stay Price */}
-            <span className="text-white bg-gray-900 px-6 py-3 rounded-lg text-xl font-semibold">
-              4500/day
-            </span>
-            {/* Long Stay Price */}
-            <span className="text-white bg-gray-800 px-6 py-3 rounded-lg text-xl font-semibold">
-              110k/month
-            </span>
+{/* Short Stay Price */}
+<span className="text-white bg-green-500 px-6 py-3 rounded-lg text-xl font-semibold shadow-lg">
+  4500/day
+</span>
+{/* Long Stay Price */}
+<span className="text-white bg-blue-500 px-6 py-3 rounded-lg text-xl font-semibold shadow-lg">
+  110k/month
+</span>
+
 
             {/* Book Now Button */}
             <Dialog>
       <DialogTrigger asChild>
       <Button
-              variant="outline"
-              className="text-white bg-gray-700 hover:bg-gray-900 px-6 py-3 rounded-lg text-lg font-medium"
+
+              className="text-white bg-gray-700 hover:bg-gray-900 px-6 py-4 rounded-lg text-lg font-medium"
             >
               Book Now
             </Button>

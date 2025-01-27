@@ -1,4 +1,3 @@
-import React from "react";
 import { useForm } from "react-hook-form";
 
 const InputField = ({ label, placeholder, width, register, name, rules }) => {
@@ -86,90 +85,128 @@ const Contact = () => {
   ];
 
   return (
-    <div className="container mx-auto h-screen flex justify-center items-center p-10">
-      <div className="bg-[#F4F7FA] px-10 py-10 max-w-[1250px] w-full rounded-2xl">
-        <section className="flex flex-col px-10 text-center text-gray-900 max-w-[1266px] w-full flex-nowrap justify-center items-center">
-          <h1 className="self-center text-6xl font-bold tracking-tighter leading-[64.8px] max-md:text-4xl pt-8">
-            Contact us
+    <div className="container mx-auto flex justify-center items-center px-6 py-10 md:px-10">
+      <div className="bg-[#F4F7FA] px-6 py-8 md:px-10 md:py-12 max-w-[1250px] w-full rounded-2xl">
+        {/* Header Section */}
+        <section className="text-center text-gray-900 px-4 md:px-10">
+          <h1 className="text-4xl md:text-6xl font-bold tracking-tighter leading-[1.2] pt-4">
+            Contact Us
           </h1>
-          <p className="mt-16 w-full text-xl tracking-normal leading-8 max-w-[650px]">
-            With lots of unique blocks, you can easily build a page without
-            coding. Build your next consultancy website within few minutes.
+          <p className="mt-6 text-lg md:text-xl tracking-normal leading-7 max-w-[650px] mx-auto">
+            We are here to assist you. Feel free to reach out to us for inquiries or assistance regarding Sarah Homestay.
           </p>
         </section>
-        <section className=" py-20">
-          <div className="flex gap-8 max-md:flex-col max-md:gap-0">
-            {contactData.map((item, index) => (
-              <ContactItem
-                key={index}
-                icon={item.icon}
-                title={item.title}
-                content={item.content}
-              />
-            ))}
+
+        {/* Contact Information Section */}
+        <section className="py-12">
+          <div className="flex flex-col md:flex-row gap-8 text-center md:text-left">
+            <div className="flex-1">
+              <h2 className="text-2xl font-semibold">Our Location</h2>
+              <p className="mt-2 text-lg">Wood Avenue, Kilimani</p>
+            </div>
+            <div className="flex-1">
+              <h2 className="text-2xl font-semibold">Phone</h2>
+              <p className="mt-2 text-lg">+254 701 946104</p>
+            </div>
+            <div className="flex-1">
+              <h2 className="text-2xl font-semibold">Email</h2>
+              <p className="mt-2 text-lg">sarahomestayke@gmail.com</p>
+            </div>
           </div>
         </section>
-        <section className="flex flex-col px-11 py-12 text-base font-bold tracking-normal leading-6 text-gray-900 rounded-xl shadow-2xl max-md:px-5 bg-white">
+
+        {/* Contact Form Section */}
+        <section className="bg-white px-6 py-8 md:px-12 md:py-12 rounded-xl shadow-lg">
           <form
-            onSubmit={handleSubmit(onSubmit)}
-            className="flex flex-wrap justify-center items-center"
+            onSubmit={(e) => e.preventDefault()}
+            className="flex flex-wrap justify-center gap-6"
           >
-            <div className="flex w-full max-w-[1000px] justify-between">
-              <InputField
-                label="First Name & Last Name"
+            <div className="flex flex-col w-full md:w-[48%]">
+              <label
+                htmlFor="name"
+                className="text-sm font-bold mb-2 text-gray-700"
+              >
+                First Name & Last Name
+              </label>
+              <input
+                type="text"
+                id="name"
                 placeholder="i.e. John Smith"
-                width="w-[48%]"
-                register={register}
-                name="name"
-                rules={{ required: "This field is required" }}
+                className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                required
               />
-              <InputField
-                label="Email"
+            </div>
+
+            <div className="flex flex-col w-full md:w-[48%]">
+              <label
+                htmlFor="email"
+                className="text-sm font-bold mb-2 text-gray-700"
+              >
+                Email
+              </label>
+              <input
+                type="email"
+                id="email"
                 placeholder="i.e. john@mail.com"
-                width="w-[48%]"
-                register={register}
-                name="email"
-                rules={{
-                  required: "Email is required",
-                  pattern: {
-                    value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                    message: "Invalid email address",
-                  },
-                }}
+                className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                required
               />
             </div>
-            <div className="flex w-full max-w-[1000px] justify-between ">
-              <InputField
-                label="Phone Number"
+
+            <div className="flex flex-col w-full md:w-[48%]">
+              <label
+                htmlFor="phone"
+                className="text-sm font-bold mb-2 text-gray-700"
+              >
+                Phone Number
+              </label>
+              <input
+                type="tel"
+                id="phone"
                 placeholder="i.e. +1-234-567-7890"
-                width="w-[48%]"
-                register={register}
-                name="phone"
-                rules={{ required: "Phone number is required" }}
-              />
-              <InputField
-                label="Subject"
-                placeholder="i.e. I need help"
-                width="w-[48%]"
-                register={register}
-                name="subject"
-                rules={{ required: "Subject is required" }}
+                className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                required
               />
             </div>
-            <InputField
-              label="Message"
-              placeholder="i.e. Type your message here."
-              width="w-[93%]"
-              register={register}
-              name="message"
-              rules={{ required: "Message is required" }}
-            />
-            <div className="flex justify-start max-md:max-w-full w-[90%] pt-8">
+
+            <div className="flex flex-col w-full md:w-[48%]">
+              <label
+                htmlFor="subject"
+                className="text-sm font-bold mb-2 text-gray-700"
+              >
+                Subject
+              </label>
+              <input
+                type="text"
+                id="subject"
+                placeholder="i.e. I need help"
+                className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                required
+              />
+            </div>
+
+            <div className="flex flex-col w-full">
+              <label
+                htmlFor="message"
+                className="text-sm font-bold mb-2 text-gray-700"
+              >
+                Message
+              </label>
+              <textarea
+                id="message"
+                placeholder="Type your message here."
+                rows="5"
+                className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                required
+              ></textarea>
+            </div>
+
+            <div className="flex justify-center w-full pt-6">
               <button
                 type="submit"
-                className="text-lg tracking-tight leading-8 text-center text-white bg-indigo-600 rounded-lg max-w-[300px] max-md:px-5 h-18 px-16 py-3 w-[200px]"
+                className="text-lg font-medium text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg px-6 py-3 transition"
               >
-                Send
+                Send Message
               </button>
             </div>
           </form>

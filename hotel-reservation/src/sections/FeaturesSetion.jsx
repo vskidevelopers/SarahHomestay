@@ -9,7 +9,7 @@ const FeaturesSection = () => {
         <div className="w-full md:w-1/2 px-6 flex justify-center mb-8 md:mb-0">
           <img
             className="rounded-xl shadow-lg w-full md:w-3/4"
-            src="path_to_your_image.jpg"
+            src="https://firebasestorage.googleapis.com/v0/b/sarah-homestay.firebasestorage.app/o/web%20assets%2FIMG-20250122-WA0019.jpg?alt=media&token=a89b674d-3402-4f79-8bc8-76c5764ffeb1"
             alt="Why Choose Us"
           />
         </div>

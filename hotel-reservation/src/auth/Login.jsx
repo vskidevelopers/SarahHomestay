@@ -48,55 +48,58 @@ export default function Login() {
     };
 
     return (
-        <div className="flex w-screen h-screen justify-center items-center bg-gray-100">
-            <Card className="w-full max-w-sm shadow-lg">
-                <form onSubmit={handleSubmit(onSubmit)}>
-                    <CardHeader>
-                        <CardTitle className="text-2xl text-center font-bold">Hotel Admin Login</CardTitle>
-                        <CardDescription className="text-center">
-                            Please enter your credentials to access your hotel management dashboard.
-                        </CardDescription>
-                    </CardHeader>
-                    <CardContent className="grid gap-4">
-                        <div className="grid gap-2">
-                            <label htmlFor="email" className="font-medium">Hotel Admin Email</label>
-                            <Input
-                                id="email"
-                                type="email"
-                                placeholder="hotel-admin@example.com"
-                                {...register("email", { required: true })}
-                            />
-                            {errors.email && (
-                                <span className="text-red-500">Email is required</span>
-                            )}
-                        </div>
-                        <div className="grid gap-2">
-                            <label htmlFor="password" className="font-medium">Password</label>
-                            <Input
-                                id="password"
-                                type="password"
-                                placeholder="Enter your password"
-                                {...register("password", { required: true })}
-                            />
-                            {errors.password && (
-                                <span className="text-red-500">Password is required</span>
-                            )}
-                        </div>
-                    </CardContent>
-                    <CardFooter>
-                        <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white" type="submit">
-                            {loading ? "Logging in..." : "Log in"}
-                        </Button>
-                        <p className="text-center mt-4 text-gray-600">
-                            Don't have an account?{" "}
-                            <a href="/hotel-signup" className="text-blue-600 hover:underline">
-                                Sign up here
-                            </a>
-                        </p>
-                    </CardFooter>
-                </form>
-            </Card>
-        </div>
+        <div className="flex w-screen h-screen justify-center items-center bg-[url('https://firebasestorage.googleapis.com/v0/b/sarah-homestay.firebasestorage.app/o/web%20assets%2FIMG-20250124-WA0004.jpg?alt=media&token=6808a541-5250-4a10-88b9-dff49e89f87c')] bg-cover bg-center">
+          <Card className="w-full max-w-sm bg-white shadow-lg rounded-2xl">
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <CardHeader>
+                <CardTitle className="text-2xl text-center font-bold text-gray-900">
+                  Sarah Homestay Login
+                </CardTitle>
+                <CardDescription className="text-center text-gray-600">
+                  Access your rental management dashboard.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="grid gap-6 p-6">
+                <div className="grid gap-2">
+                  <label htmlFor="email" className="font-medium text-gray-800">
+                    Email Address
+                  </label>
+                  <Input
+                    id="email"
+                    type="email"
+                    placeholder="your-email@example.com"
+                    {...register("email", { required: true })}
+                  />
+                  {errors.email && (
+                    <span className="text-sm text-red-500">Email is required</span>
+                  )}
+                </div>
+                <div className="grid gap-2">
+                  <label htmlFor="password" className="font-medium text-gray-800">
+                    Password
+                  </label>
+                  <Input
+                    id="password"
+                    type="password"
+                    placeholder="Enter your password"
+                    {...register("password", { required: true })}
+                  />
+                  {errors.password && (
+                    <span className="text-sm text-red-500">Password is required</span>
+                  )}
+                </div>
+              </CardContent>
+              <CardFooter className="flex flex-col items-center gap-4 p-6">
+                <Button
+                  className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg"
+                  type="submit"
+                >
+                  {loading ? "Logging in..." : "Log in"}
+                </Button>
 
-    );
+              </CardFooter>
+            </form>
+          </Card>
+        </div>
+      );
 }

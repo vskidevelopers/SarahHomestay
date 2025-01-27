@@ -1,10 +1,10 @@
-import React from "react";
+import {Link} from "react-router-dom";
 import CountUp from "react-countup";
 import { Home, Users, Star } from "lucide-react";
 
 const AboutUsSection = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 py-16 md:py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 py-20 md:py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto flex flex-wrap">
         <div className="w-full lg:w-1/2 px-4 mb-8 lg:mb-0">
           <div className="text-center lg:text-left">
@@ -51,9 +51,9 @@ const AboutUsSection = () => {
                 <p className="text-gray-700">Reviews</p>
               </div>
             </div>
-            <button className="mt-8 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition duration-300">
+            <Link to="/explore" className="mt-8 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition duration-300">
               EXPLORE MORE
-            </button>
+            </Link>
           </div>
         </div>
         <div className="w-full lg:w-1/2 px-4 flex items-center justify-center">
