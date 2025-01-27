@@ -1,5 +1,6 @@
+import HomeBookingForm from "@/components/forms/HomeBookingForm";
 import { Phone } from "lucide-react";
-import BookingForm from "./BookingForm";
+imp
 
 const HomeDetailsBookingSection = ({ price = 3500 }) => {
   return (
@@ -9,7 +10,7 @@ const HomeDetailsBookingSection = ({ price = 3500 }) => {
         <span className="text-sm text-gray-600">/night</span>
       </div>
 
-      <BookingForm />
+<HomeBookingForm />
 
       <div className="space-y-4">
         <h3 className="font-semibold text-lg">Amenities</h3>
