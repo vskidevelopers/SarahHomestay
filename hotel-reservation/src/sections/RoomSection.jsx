@@ -1,7 +1,15 @@
+import FeaturedRoomBookingForm from "@/components/forms/FeaturedRoomBookingForm";
+import {
+  Dialog,
+  DialogContent,
+
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+
 const RoomSection = () => {
-  const handleBookFeatured = () => {
-    alert("booking of featured rooms is still under maintanence");
-  };
+
   return (
     <div className="p-8 lg:p-16">
       {/* Featured Room Title */}
@@ -69,12 +77,25 @@ const RoomSection = () => {
             </span>
 
             {/* Book Now Button */}
-            <button
-              onClick={handleBookFeatured}
+            <Dialog>
+      <DialogTrigger asChild>
+      <Button
+              variant="outline"
               className="text-white bg-gray-700 hover:bg-gray-900 px-6 py-3 rounded-lg text-lg font-medium"
             >
               Book Now
-            </button>
+            </Button>
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-[425px]">
+        <DialogHeader>
+          <DialogTitle>Book This Room</DialogTitle>
+
+        </DialogHeader>
+<FeaturedRoomBookingForm / >
+
+      </DialogContent>
+    </Dialog>
+
           </div>
         </div>
       </div>

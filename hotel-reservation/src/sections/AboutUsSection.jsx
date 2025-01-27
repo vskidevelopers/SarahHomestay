@@ -4,7 +4,7 @@ import { Home, Users, Star } from "lucide-react";
 
 const AboutUsSection = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 py-16 md:py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto flex flex-wrap">
         <div className="w-full lg:w-1/2 px-4 mb-8 lg:mb-0">
           <div className="text-center lg:text-left">
