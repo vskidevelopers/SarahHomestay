@@ -13,38 +13,40 @@ const ProductImageSection = ({
         <img src={image} alt={title} className="w-full h-full object-cover" />
       </div>
 
-      <div className="mt-6 container mx-auto">
-        <div className="flex items-center justify-between">
-          <h1 className="text-4xl font-bold">{title}</h1>
-          <div className="flex items-center gap-1">
-            <Star className="w-6 h-6 fill-yellow-400 text-yellow-400" />
-            <span className="text-lg font-semibold">{rating}</span>
-          </div>
-        </div>
+      <div className="mt-6 px-6 mx-auto">
+  <div className="flex items-center justify-between">
+    <h1 className="text-4xl font-bold">{title}</h1>
+    <div className="flex items-center gap-1">
+      <Star className="w-6 h-6 fill-yellow-400 text-yellow-400" />
+      <span className="text-lg font-semibold">{rating}</span>
+    </div>
+  </div>
 
-        <div className="flex items-center gap-2 mt-3 text-gray-600">
-          <MapPin className="w-5 h-5" />
-          <span>{location}</span>
-        </div>
+  <div className="flex items-center gap-2 mt-3 text-gray-600">
+    <MapPin className="w-5 h-5" />
+    <span>{location}</span>
+  </div>
 
-        <div className="flex items-center gap-8 mt-6 pb-6 border-b">
-          {[
-            { icon: Bed, label: "Bed" },
-            { icon: Bath, label: "Bath" },
-            { icon: Wifi, label: "Wifi" },
-            { icon: Tv, label: "TV" },
-            { icon: Dumbbell, label: "Gym" },
-            { icon: Car, label: "Parking" },
-          ].map((item, index) => (
-            <div key={index} className="flex flex-col items-center gap-1">
-              <item.icon className="w-6 h-6 text-gray-600" />
-              <span className="text-sm text-gray-600">{item.label}</span>
-            </div>
-          ))}
-        </div>
-
-        <p className="mt-6 text-gray-600 leading-relaxed">{description}</p>
+  <div className="flex items-center gap-8 mt-6 pb-6 border-b">
+    {[
+      { icon: Bed, label: "Bed" },
+      { icon: Bath, label: "Bath" },
+      { icon: Wifi, label: "Wifi" },
+      { icon: Tv, label: "TV" },
+      { icon: Dumbbell, label: "Gym" },
+      { icon: Car, label: "Parking" },
+    ].map((item, index) => (
+      <div key={index} className="flex flex-col items-center gap-1">
+        <item.icon className="w-6 h-6 text-gray-600" />
+        <span className="text-sm text-gray-600">{item.label}</span>
       </div>
+    ))}
+  </div>
+
+  <p className="mt-6 text-gray-600 leading-relaxed">{description}</p>
+</div>
+
+
     </div>
   );
 };
