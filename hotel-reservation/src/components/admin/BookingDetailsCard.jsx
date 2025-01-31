@@ -77,7 +77,7 @@ const BookingDetailsCard = ({ booking }) => {
           <ul className="grid gap-3">
             <li className="flex items-center justify-between">
               <span className="text-muted-foreground">Total Price</span>
-              <span>${booking.totalPrice}</span>
+              <span className="whitespace-nowrap">Ksh {booking.totalPrice}</span>
             </li>
           </ul>
         </div>

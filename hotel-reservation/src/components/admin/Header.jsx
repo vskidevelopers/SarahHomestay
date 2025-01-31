@@ -69,7 +69,7 @@ const Header = () => {
                             className="group flex h-10 w-10 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:text-base"
                         >
                             <Package2 className="h-5 w-5 transition-all group-hover:scale-110" />
-                            <span className="sr-only">Phoebe RoomQuest</span>
+                            <span className="sr-only">Sarah Homestay</span>
                         </Link>
 
                         <Link
@@ -82,11 +82,11 @@ const Header = () => {
 
 
                         <Link
-                            to="/admin/rooms"
+                            to="/admin/homes"
                             className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
                         >
                             <Lamp className="h-5 w-5" />
-                            Rooms
+                            Homes
                         </Link>
 
                         <Link

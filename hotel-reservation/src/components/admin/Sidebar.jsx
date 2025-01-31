@@ -32,7 +32,7 @@ const Sidebar = () => {
                         className="group flex h-9 w-9 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:h-8 md:w-8 md:text-base"
                     >
                         <Package2 className="h-4 w-4 transition-all group-hover:scale-110" />
-                        <span className="sr-only">Phoebe RoomQuest</span>
+                        <span className="sr-only">Sarah Homestay</span>
                     </Link>
                     <Tooltip>
                         <TooltipTrigger asChild>
@@ -51,14 +51,14 @@ const Sidebar = () => {
                     <Tooltip>
                         <TooltipTrigger asChild>
                             <Link
-                                to="/admin/rooms"
+                                to="/admin/homes"
                                 className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-accent-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
                             >
                                 <Lamp className="h-5 w-5" />
-                                <span className="sr-only">Rooms</span>
+                                <span className="sr-only">Homes</span>
                             </Link>
                         </TooltipTrigger>
-                        <TooltipContent side="right">Rooms</TooltipContent>
+                        <TooltipContent side="right">Homes</TooltipContent>
                     </Tooltip>
 
                     <Tooltip>
