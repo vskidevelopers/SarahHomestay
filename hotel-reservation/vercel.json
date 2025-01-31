@@ -2,9 +2,7 @@
   "build": {
     "env": {
       "YARN_VERSION": "4.6.0"
-    },
-    "installCommand": "yarn install",
-    "buildCommand": "yarn build"
+    }
   },
   "rewrites": [
     {
