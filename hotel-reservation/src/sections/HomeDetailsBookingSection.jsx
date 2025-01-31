@@ -1,26 +1,24 @@
 import HomeBookingForm from "@/components/forms/HomeBookingForm";
 import { Phone } from "lucide-react";
 
-
-const HomeDetailsBookingSection = ({ price = 3500 }) => {
+const HomeDetailsBookingSection = ({ home }) => {
   return (
     <div className="w-full space-y-8 bg-white p-6 rounded-lg">
       <div className="flex items-baseline gap-1">
-        <span className="text-2xl font-bold">Ksh {price.toLocaleString()}</span>
+        <span className="text-2xl font-bold">
+          Ksh {home?.priceNight.toLocaleString()}
+        </span>
         <span className="text-sm text-gray-600">/night</span>
       </div>
 
-<HomeBookingForm />
+      <HomeBookingForm home={home} />
 
       <div className="space-y-4">
         <h3 className="font-semibold text-lg">Amenities</h3>
         <ul className="list-disc pl-5 space-y-2 text-gray-600">
-          <li>King-size bed with premium linens</li>
-          <li>En-suite bathroom with rainfall shower</li>
-          <li>High-speed WiFi</li>
-          <li>50-inch Smart TV</li>
-          <li>Access to fitness center</li>
-          <li>Free parking</li>
+          {home?.amenities?.map((amenity, index) => (
+            <li key={index}>{amenity}</li>
+          ))}
         </ul>
       </div>
 

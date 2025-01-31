@@ -1,19 +1,63 @@
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "../ui/scroll-area";
-import { Card, CardDescription, CardHeader, CardTitle } from "../ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+  CardFooter,
+} from "../ui/card";
 import { useForm } from "react-hook-form";
 import { Label } from "../ui/label";
+import { useBookingFunctions } from "@/firebase/firebase";
+import { useToast } from "@/hooks/use-toast";
+import { useParams } from "react-router-dom";
 
-const HomeBookingForm = ({ unitType = "Luxury Suite" }) => {
+const HomeBookingForm = ({ home }) => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => {
-    console.log(data); // Handle form submission (e.g., send data to an API)
+  const { homeId } = useParams();
+  const { toast } = useToast();
+  const { postBooking } = useBookingFunctions();
+
+  const onSubmit = async (data) => {
+    console.log("booking data >> ", data); // Handle form submission (e.g., send data to an API)
+    try {
+      const postBookingResponse = await postBooking({
+        ...data,
+        homeId: homeId,
+        unitType: home?.unitType,
+      });
+      if (postBookingResponse?.success) {
+        toast({
+          title: "✅Success!",
+          description: `${postBookingResponse?.message}`,
+        });
+        reset();
+      } else {
+        toast({
+          variant: "destructive",
+          title: "Uh oh! Something went wrong.",
+          description: `${postBookingResponse?.message}`,
+        });
+      }
+    } catch (error) {
+      console.error("error posting a booking >> ", error);
+      toast({
+        variant: "destructive",
+        title: "Uh oh! Something went wrong.",
+        description: `${error}`,
+      });
+      reset();
+    }
   };
+
   return (
     <div className="flex w-full justify-center items-center">
       <ScrollArea className="h-[80vh]">
@@ -114,7 +158,7 @@ const HomeBookingForm = ({ unitType = "Luxury Suite" }) => {
                   <Label htmlFor="unitType">Unit Type</Label>
                   <Input
                     id="unitType"
-                    value="Studio" // Replace with dynamic value if needed
+                    value={home?.unitType}
                     disabled
                     className="bg-gray-50"
                   />

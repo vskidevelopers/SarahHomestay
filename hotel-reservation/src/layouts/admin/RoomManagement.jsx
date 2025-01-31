@@ -1,546 +1,526 @@
-
-
 import { Button } from "@/components/ui/button";
 import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle,
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
 } from "@/components/ui/card";
 
 import {
-    Table,
-    TableBody,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow,
-} from "@/components/ui/table"
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
-import { Badge } from "@/components/ui/badge"
+import { Badge } from "@/components/ui/badge";
 import {
-    Dialog,
-    DialogContent,
-    DialogHeader,
-    DialogTitle,
-    DialogTrigger,
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
 } from "@/components/ui/dialog";
 import AddRoomForm from "@/components/forms/AddRoomForm";
 
-import {
-    Tabs,
-    TabsContent,
-    TabsList,
-    TabsTrigger,
-} from "@/components/ui/tabs"
-import { useRoomFunctions } from "@/utils/firebase";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { RotateCcw } from "lucide-react";
+
 import { useEffect, useState } from "react";
-
-
+import { useHomeFunctions } from "@/firebase/firebase";
 
 function RoomManagement() {
+  const { getHomesByUnitType, getHomes } = useHomeFunctions();
 
-    const { getRoomsById, rooms } = useRoomFunctions()
-    const localId = localStorage.getItem("hotelId")
-    console.log("localId >> ", localId);
-    const [roomsData, setRoomsData] = useState([])
+  const [roomsData, setRoomsData] = useState([]);
 
+  const getAllHomes = async () => {
+    const getHomesResponse = await getHomes();
+    console.log("homes response >> ", getHomesResponse);
 
-    const getRoom = async () => {
-        const roomResponse = await getRoomsById(localId)
-        console.log("room response >> ", roomResponse);
+    setRoomsData(getHomesResponse?.data);
+  };
 
-        setRoomsData(roomResponse?.rooms)
+  useEffect(() => {
+    getAllHomes();
+  }, []);
 
-    }
+  console.log("roomsData >> ", roomsData);
 
-    const hasAvailableRooms = roomsData && Object.values(roomsData).some((value) => value !== 0);
+  return (
+    <div className="h-full  w-full ">
+      <Tabs default-value="all">
+        <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8 lg:grid-cols-2 ">
+          <div className="grid auto-rows-max items-start gap-4 md:gap-8 sm:col-span-2">
+            <div className="grid gap-4 sm:grid-cols-2 ">
+              <Dialog>
+                <Card
+                  className="flex items-center justify-center h-full"
+                  x-chunk="dashboard-05-chunk-0"
+                >
+                  <div className="w-full flex flex-col gap-4">
+                    <CardHeader className="pb-3">
+                      <CardTitle>Homes</CardTitle>
+                      <CardDescription className="max-w-lg text-balance leading-relaxed">
+                        Efficiently manage your rental homes with ease. From
+                        listing properties and tracking bookings to overseeing
+                        guest details and payments, Sarah Homestay provides the
+                        tools you need to streamline operations and offer
+                        exceptional experiences.
+                      </CardDescription>
+                    </CardHeader>
+                    <CardFooter className="mt-auto">
+                      <DialogTrigger asChild>
+                        <Button>Add A Home</Button>
+                      </DialogTrigger>
+                    </CardFooter>
 
-    console.log("hasAvailableRooms >>> ", hasAvailableRooms);
+                    <DialogContent className="max-w-2xl">
+                      <DialogHeader>
+                        <DialogTitle className="text-center py-9">
+                          Add A Home
+                        </DialogTitle>
+                      </DialogHeader>
+                      <AddRoomForm />
+                      {/* Add ew Single-Bed Room Form will be used here */}
+                    </DialogContent>
+                  </div>
+                </Card>
+              </Dialog>
 
+              <div className="grid gap-4 sm:grid-cols-2">
+                {roomsData?.length > 0 ? (
+                  // Render room cards for each available room type
+                  <div className="grid gap-4 sm:grid-cols-1">
+                    <h2 className="text-2xl font-semibold text-center">
+                      Homes Available
+                    </h2>
+                  </div>
+                ) : (
+                  // Show "No Rooms" message if no rooms are available
+                  <div className="flex items-center justify-center h-full">
+                    <h2 className="text-2xl font-semibold text-center">
+                      No Homes
+                    </h2>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
 
-    useEffect(() => {
+          <div className="grid auto-rows-max items-start gap-4 md:gap-8 sm:col-span-2">
+            <div className="flex items-center">
+              <TabsList>
+                <TabsTrigger value="all">All</TabsTrigger>
+                <TabsTrigger value="studio">Studio</TabsTrigger>
+                <TabsTrigger value="1bedroom">1 Bedroom</TabsTrigger>
+                <TabsTrigger value="2bedroom">2 Bedrooms</TabsTrigger>
+                <TabsTrigger value="villa">Villa</TabsTrigger>
+              </TabsList>
+              <div className="ml-auto flex items-center gap-2">
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className="h-7 gap-1 text-sm"
+                >
+                  <RotateCcw className="h-3.5 w-3.5" />
+                  <span className="sr-only sm:not-sr-only">Refresh</span>
+                </Button>
+              </div>
+            </div>
 
-        console.log("Updated rooms from state >> ", rooms);
-    }, [rooms])
+            <TabsContent value="all">
+              <Card x-chunk="dashboard-05-chunk-3">
+                <CardHeader className="px-7">
+                  <CardTitle>Home Listings</CardTitle>
+                  <CardDescription>
+                    Latest rental properties available on Sarah Homestay.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead>#</TableHead>
+                        <TableHead>Image</TableHead>
+                        <TableHead>Name</TableHead>
+                        <TableHead className="hidden sm:table-cell">
+                          Location
+                        </TableHead>
+                        <TableHead className="hidden sm:table-cell">
+                          Unit Type
+                        </TableHead>
+                        <TableHead className="hidden sm:table-cell">
+                          Featured
+                        </TableHead>
+                        <TableHead className="text-right">
+                          Price/Night
+                        </TableHead>
+                        <TableHead className="text-right">Ratings</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {roomsData.map((home, index) => (
+                        <TableRow key={home.id}>
+                          <TableCell>{index + 1}</TableCell>
+                          <TableCell>
+                            <img
+                              src={home.roomPhoto}
+                              alt={home.homeName}
+                              className="w-12 h-12 rounded-md"
+                            />
+                          </TableCell>
+                          <TableCell className="font-medium">
+                            {home.homeName}
+                          </TableCell>
+                          <TableCell className="hidden sm:table-cell">
+                            {home.location}
+                          </TableCell>
+                          <TableCell className="hidden sm:table-cell">
+                            {home.unitType}
+                          </TableCell>
+                          <TableCell className="hidden sm:table-cell">
+                            {home.featured ? (
+                              <Badge className="text-xs" variant="secondary">
+                                Yes
+                              </Badge>
+                            ) : (
+                              <Badge className="text-xs" variant="outline">
+                                No
+                              </Badge>
+                            )}
+                          </TableCell>
+                          <TableCell className="text-right">
+                            Ksh {home.priceNight}
+                          </TableCell>
+                          <TableCell className="text-right">
+                            {home.ratings} ★
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </CardContent>
+              </Card>
+            </TabsContent>
+            <TabsContent value="studio">
+              <Card x-chunk="dashboard-05-chunk-3">
+                <CardHeader className="px-7">
+                  <CardTitle>Studio Homes</CardTitle>
+                  <CardDescription>
+                    Latest studio rental properties available on Sarah Homestay.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead>#</TableHead>
+                        <TableHead>Image</TableHead>
+                        <TableHead>Name</TableHead>
+                        <TableHead className="hidden sm:table-cell">
+                          Location
+                        </TableHead>
+                        <TableHead className="hidden sm:table-cell">
+                          Unit Type
+                        </TableHead>
+                        <TableHead className="hidden sm:table-cell">
+                          Featured
+                        </TableHead>
+                        <TableHead className="text-right">
+                          Price/Night
+                        </TableHead>
+                        <TableHead className="text-right">Ratings</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {roomsData
+                        .filter((home) => home.unitType === "studio") // Filter for studio unit type
+                        .map((home, index) => (
+                          <TableRow key={home.id}>
+                            <TableCell>{index + 1}</TableCell>
+                            <TableCell>
+                              <img
+                                src={home.roomPhoto}
+                                alt={home.homeName}
+                                className="w-12 h-12 rounded-md"
+                              />
+                            </TableCell>
+                            <TableCell className="font-medium">
+                              {home.homeName}
+                            </TableCell>
+                            <TableCell className="hidden sm:table-cell">
+                              {home.location}
+                            </TableCell>
+                            <TableCell className="hidden sm:table-cell">
+                              {home.unitType}
+                            </TableCell>
+                            <TableCell className="hidden sm:table-cell">
+                              {home.featured ? (
+                                <Badge className="text-xs" variant="secondary">
+                                  Yes
+                                </Badge>
+                              ) : (
+                                <Badge className="text-xs" variant="outline">
+                                  No
+                                </Badge>
+                              )}
+                            </TableCell>
+                            <TableCell className="text-right">
+                              Ksh {home.priceNight}
+                            </TableCell>
+                            <TableCell className="text-right">
+                              {home.ratings} ★
+                            </TableCell>
+                          </TableRow>
+                        ))}
+                    </TableBody>
+                  </Table>
+                </CardContent>
+              </Card>
+            </TabsContent>
 
-    useEffect(() => {
-        getRoom()
-    }, [])
+            <TabsContent value="1bedroom">
+              <Card x-chunk="dashboard-05-chunk-3">
+                <CardHeader className="px-7">
+                  <CardTitle>1 Bedroom Homes</CardTitle>
+                  <CardDescription>
+                    Latest 1 bedroom rental properties available on Sarah
+                    Homestay.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead>#</TableHead>
+                        <TableHead>Image</TableHead>
+                        <TableHead>Name</TableHead>
+                        <TableHead className="hidden sm:table-cell">
+                          Location
+                        </TableHead>
+                        <TableHead className="hidden sm:table-cell">
+                          Unit Type
+                        </TableHead>
+                        <TableHead className="hidden sm:table-cell">
+                          Featured
+                        </TableHead>
+                        <TableHead className="text-right">
+                          Price/Night
+                        </TableHead>
+                        <TableHead className="text-right">Ratings</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {roomsData
+                        .filter((home) => home.unitType === "1_bedroom") // Filter for 1bedroom unit type
+                        .map((home, index) => (
+                          <TableRow key={home.id}>
+                            <TableCell>{index + 1}</TableCell>
+                            <TableCell>
+                              <img
+                                src={home.roomPhoto}
+                                alt={home.homeName}
+                                className="w-12 h-12 rounded-md"
+                              />
+                            </TableCell>
+                            <TableCell className="font-medium">
+                              {home.homeName}
+                            </TableCell>
+                            <TableCell className="hidden sm:table-cell">
+                              {home.location}
+                            </TableCell>
+                            <TableCell className="hidden sm:table-cell">
+                              {home.unitType}
+                            </TableCell>
+                            <TableCell className="hidden sm:table-cell">
+                              {home.featured ? (
+                                <Badge className="text-xs" variant="secondary">
+                                  Yes
+                                </Badge>
+                              ) : (
+                                <Badge className="text-xs" variant="outline">
+                                  No
+                                </Badge>
+                              )}
+                            </TableCell>
+                            <TableCell className="text-right">
+                              Ksh {home.priceNight}
+                            </TableCell>
+                            <TableCell className="text-right">
+                              {home.ratings} ★
+                            </TableCell>
+                          </TableRow>
+                        ))}
+                    </TableBody>
+                  </Table>
+                </CardContent>
+              </Card>
+            </TabsContent>
 
-    console.log("roomsData >> ", roomsData);
+            <TabsContent value="2bedroom">
+              <Card x-chunk="dashboard-05-chunk-3">
+                <CardHeader className="px-7">
+                  <CardTitle>2 Bedroom Homes</CardTitle>
+                  <CardDescription>
+                    Latest 2 bedroom rental properties available on Sarah
+                    Homestay.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead>#</TableHead>
+                        <TableHead>Image</TableHead>
+                        <TableHead>Name</TableHead>
+                        <TableHead className="hidden sm:table-cell">
+                          Location
+                        </TableHead>
+                        <TableHead className="hidden sm:table-cell">
+                          Unit Type
+                        </TableHead>
+                        <TableHead className="hidden sm:table-cell">
+                          Featured
+                        </TableHead>
+                        <TableHead className="text-right">
+                          Price/Night
+                        </TableHead>
+                        <TableHead className="text-right">Ratings</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {roomsData
+                        .filter((home) => home.unitType === "2_bedroom") // Filter for 2bedroom unit type
+                        .map((home, index) => (
+                          <TableRow key={home.id}>
+                            <TableCell>{index + 1}</TableCell>
+                            <TableCell>
+                              <img
+                                src={home.roomPhoto}
+                                alt={home.homeName}
+                                className="w-12 h-12 rounded-md"
+                              />
+                            </TableCell>
+                            <TableCell className="font-medium">
+                              {home.homeName}
+                            </TableCell>
+                            <TableCell className="hidden sm:table-cell">
+                              {home.location}
+                            </TableCell>
+                            <TableCell className="hidden sm:table-cell">
+                              {home.unitType}
+                            </TableCell>
+                            <TableCell className="hidden sm:table-cell">
+                              {home.featured ? (
+                                <Badge className="text-xs" variant="secondary">
+                                  Yes
+                                </Badge>
+                              ) : (
+                                <Badge className="text-xs" variant="outline">
+                                  No
+                                </Badge>
+                              )}
+                            </TableCell>
+                            <TableCell className="text-right">
+                              Ksh {home.priceNight}
+                            </TableCell>
+                            <TableCell className="text-right">
+                              {home.ratings} ★
+                            </TableCell>
+                          </TableRow>
+                        ))}
+                    </TableBody>
+                  </Table>
+                </CardContent>
+              </Card>
+            </TabsContent>
 
-
-
-
-
-
-    return (
-        <div className="h-full  w-full ">
-            <Tabs default-value="single">
-                <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8 lg:grid-cols-2 ">
-                    <div className="grid auto-rows-max items-start gap-4 md:gap-8 sm:col-span-2">
-                        <div className="grid gap-4 sm:grid-cols-2 ">
-                            <Dialog>
-                                <Card className="flex items-center justify-center h-full" x-chunk="dashboard-05-chunk-0">
-                                    <div className="w-full flex flex-col gap-4">
-                                        <CardHeader className="pb-3">
-                                            <CardTitle>Homes</CardTitle>
-                                            <CardDescription className="max-w-lg text-balance leading-relaxed">
-    Efficiently manage your rental homes with ease. From listing properties and tracking bookings to overseeing guest details and payments, Sarah Homestay provides the tools you need to streamline operations and offer exceptional experiences.
-</CardDescription>
-
-                                        </CardHeader>
-                                        <CardFooter className="mt-auto">
-
-                                            <DialogTrigger asChild>
-                                                <Button>Add A Home</Button>
-                                            </DialogTrigger>
-                                        </CardFooter>
-
-                                        <DialogContent>
-                                            <DialogHeader>
-                                                <DialogTitle className="text-center py-9">
-                                                    Add A Home
-                                                </DialogTitle>
-                                            </DialogHeader>
-                                            <AddRoomForm />
-                                            {/* Add ew Single-Bed Room Form will be used here */}
-
-                                        </DialogContent>
-                                    </div>
-                                </Card>
-                            </Dialog>
-
-                            <div className="grid gap-4 sm:grid-cols-2">
-                                {hasAvailableRooms ? (
-                                    // Render room cards for each available room type
-                                    <div className="grid gap-4 sm:grid-cols-1">
-                                        {Object.entries(roomsData).map(([roomType, room]) => (
-                                            room?.roomId !== 0 && (
-                                                <Card key={roomType} x-chunk="dashboard-05-chunk-1">
-                                                    <CardHeader className="pb-2">
-                                                        <CardDescription>{roomType} Beds</CardDescription>
-                                                        <CardTitle className="text-4xl">{room?.numberOfRooms}</CardTitle>
-                                                    </CardHeader>
-                                                    <CardContent>
-                                                        <div className="text-xs text-muted-foreground">
-                                                            🛁 Hot Shower
-                                                        </div>
-                                                    </CardContent>
-                                                    <CardFooter>
-                                                        <TabsList className="bg-transparent">
-                                                            <TabsTrigger value={roomType}>
-                                                                <Button>View Room</Button>
-                                                            </TabsTrigger>
-                                                        </TabsList>
-                                                    </CardFooter>
-                                                </Card>
-                                            )
-                                        ))}
-                                    </div>
-                                ) : (
-                                    // Show "No Rooms" message if no rooms are available
-                                    <div className="flex items-center justify-center h-full">
-                                        <h2 className="text-2xl font-semibold text-center">No Rooms</h2>
-                                    </div>
-                                )}
-
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <div className="grid auto-rows-max items-start gap-4 md:gap-8 sm:col-span-2">
-                        <TabsContent value="single">
-                            <Card x-chunk="dashboard-05-chunk-3">
-                                <CardHeader className="px-7">
-                                    <CardTitle>Bookings</CardTitle>
-                                    <CardDescription>
-                                        Recent orders from your store.
-                                    </CardDescription>
-                                </CardHeader>
-                                <CardContent>
-                                    <Table>
-                                        <TableHeader>
-                                            <TableRow>
-                                                <TableHead>Customer</TableHead>
-                                                <TableHead className="hidden sm:table-cell">
-                                                    Type
-                                                </TableHead>
-                                                <TableHead className="hidden sm:table-cell">
-                                                    Status
-                                                </TableHead>
-                                                <TableHead className="hidden md:table-cell">
-                                                    Date
-                                                </TableHead>
-                                                <TableHead className="text-right">Amount</TableHead>
-                                            </TableRow>
-                                        </TableHeader>
-                                        <TableBody>
-                                            <TableRow className="bg-accent">
-                                                <TableCell>
-                                                    <div className="font-medium">Liam Johnson</div>
-                                                    <div className="hidden text-sm text-muted-foreground md:inline">
-                                                        liam@example.com
-                                                    </div>
-                                                </TableCell>
-                                                <TableCell className="hidden sm:table-cell">
-                                                    Sale
-                                                </TableCell>
-                                                <TableCell className="hidden sm:table-cell">
-                                                    <Badge className="text-xs" variant="secondary">
-                                                        Fulfilled
-                                                    </Badge>
-                                                </TableCell>
-                                                <TableCell className="hidden md:table-cell">
-                                                    2023-06-23
-                                                </TableCell>
-                                                <TableCell className="text-right">$250.00</TableCell>
-                                            </TableRow>
-                                            <TableRow>
-                                                <TableCell>
-                                                    <div className="font-medium">Olivia Smith</div>
-                                                    <div className="hidden text-sm text-muted-foreground md:inline">
-                                                        olivia@example.com
-                                                    </div>
-                                                </TableCell>
-                                                <TableCell className="hidden sm:table-cell">
-                                                    Refund
-                                                </TableCell>
-                                                <TableCell className="hidden sm:table-cell">
-                                                    <Badge className="text-xs" variant="outline">
-                                                        Declined
-                                                    </Badge>
-                                                </TableCell>
-                                                <TableCell className="hidden md:table-cell">
-                                                    2023-06-24
-                                                </TableCell>
-                                                <TableCell className="text-right">$150.00</TableCell>
-                                            </TableRow>
-                                            <TableRow>
-                                                <TableCell>
-                                                    <div className="font-medium">Noah Williams</div>
-                                                    <div className="hidden text-sm text-muted-foreground md:inline">
-                                                        noah@example.com
-                                                    </div>
-                                                </TableCell>
-                                                <TableCell className="hidden sm:table-cell">
-                                                    Subscription
-                                                </TableCell>
-                                                <TableCell className="hidden sm:table-cell">
-                                                    <Badge className="text-xs" variant="secondary">
-                                                        Fulfilled
-                                                    </Badge>
-                                                </TableCell>
-                                                <TableCell className="hidden md:table-cell">
-                                                    2023-06-25
-                                                </TableCell>
-                                                <TableCell className="text-right">$350.00</TableCell>
-                                            </TableRow>
-                                            <TableRow>
-                                                <TableCell>
-                                                    <div className="font-medium">Emma Brown</div>
-                                                    <div className="hidden text-sm text-muted-foreground md:inline">
-                                                        emma@example.com
-                                                    </div>
-                                                </TableCell>
-                                                <TableCell className="hidden sm:table-cell">
-                                                    Sale
-                                                </TableCell>
-                                                <TableCell className="hidden sm:table-cell">
-                                                    <Badge className="text-xs" variant="secondary">
-                                                        Fulfilled
-                                                    </Badge>
-                                                </TableCell>
-                                                <TableCell className="hidden md:table-cell">
-                                                    2023-06-26
-                                                </TableCell>
-                                                <TableCell className="text-right">$450.00</TableCell>
-                                            </TableRow>
-                                            <TableRow>
-                                                <TableCell>
-                                                    <div className="font-medium">Liam Johnson</div>
-                                                    <div className="hidden text-sm text-muted-foreground md:inline">
-                                                        liam@example.com
-                                                    </div>
-                                                </TableCell>
-                                                <TableCell className="hidden sm:table-cell">
-                                                    Sale
-                                                </TableCell>
-                                                <TableCell className="hidden sm:table-cell">
-                                                    <Badge className="text-xs" variant="secondary">
-                                                        Fulfilled
-                                                    </Badge>
-                                                </TableCell>
-                                                <TableCell className="hidden md:table-cell">
-                                                    2023-06-23
-                                                </TableCell>
-                                                <TableCell className="text-right">$250.00</TableCell>
-                                            </TableRow>
-                                            <TableRow>
-                                                <TableCell>
-                                                    <div className="font-medium">Liam Johnson</div>
-                                                    <div className="hidden text-sm text-muted-foreground md:inline">
-                                                        liam@example.com
-                                                    </div>
-                                                </TableCell>
-                                                <TableCell className="hidden sm:table-cell">
-                                                    Sale
-                                                </TableCell>
-                                                <TableCell className="hidden sm:table-cell">
-                                                    <Badge className="text-xs" variant="secondary">
-                                                        Fulfilled
-                                                    </Badge>
-                                                </TableCell>
-                                                <TableCell className="hidden md:table-cell">
-                                                    2023-06-23
-                                                </TableCell>
-                                                <TableCell className="text-right">$250.00</TableCell>
-                                            </TableRow>
-                                            <TableRow>
-                                                <TableCell>
-                                                    <div className="font-medium">Olivia Smith</div>
-                                                    <div className="hidden text-sm text-muted-foreground md:inline">
-                                                        olivia@example.com
-                                                    </div>
-                                                </TableCell>
-                                                <TableCell className="hidden sm:table-cell">
-                                                    Refund
-                                                </TableCell>
-                                                <TableCell className="hidden sm:table-cell">
-                                                    <Badge className="text-xs" variant="outline">
-                                                        Declined
-                                                    </Badge>
-                                                </TableCell>
-                                                <TableCell className="hidden md:table-cell">
-                                                    2023-06-24
-                                                </TableCell>
-                                                <TableCell className="text-right">$150.00</TableCell>
-                                            </TableRow>
-                                            <TableRow>
-                                                <TableCell>
-                                                    <div className="font-medium">Emma Brown</div>
-                                                    <div className="hidden text-sm text-muted-foreground md:inline">
-                                                        emma@example.com
-                                                    </div>
-                                                </TableCell>
-                                                <TableCell className="hidden sm:table-cell">
-                                                    Sale
-                                                </TableCell>
-                                                <TableCell className="hidden sm:table-cell">
-                                                    <Badge className="text-xs" variant="secondary">
-                                                        Fulfilled
-                                                    </Badge>
-                                                </TableCell>
-                                                <TableCell className="hidden md:table-cell">
-                                                    2023-06-26
-                                                </TableCell>
-                                                <TableCell className="text-right">$450.00</TableCell>
-                                            </TableRow>
-                                        </TableBody>
-                                    </Table>
-                                </CardContent>
-                            </Card>
-                        </TabsContent>
-                        <TabsContent value="double">
-                            <Card x-chunk="dashboard-05-chunk-3">
-                                <CardHeader className="px-7">
-                                    <CardTitle>Doubles</CardTitle>
-                                    <CardDescription>
-                                        Recent orders from your store.
-                                    </CardDescription>
-                                </CardHeader>
-                                <CardContent>
-                                    <Table>
-                                        <TableHeader>
-                                            <TableRow>
-                                                <TableHead>Customer</TableHead>
-                                                <TableHead className="hidden sm:table-cell">
-                                                    Type
-                                                </TableHead>
-                                                <TableHead className="hidden sm:table-cell">
-                                                    Status
-                                                </TableHead>
-                                                <TableHead className="hidden md:table-cell">
-                                                    Date
-                                                </TableHead>
-                                                <TableHead className="text-right">Amount</TableHead>
-                                            </TableRow>
-                                        </TableHeader>
-                                        <TableBody>
-                                            <TableRow className="bg-accent">
-                                                <TableCell>
-                                                    <div className="font-medium">Liam Johnson</div>
-                                                    <div className="hidden text-sm text-muted-foreground md:inline">
-                                                        liam@example.com
-                                                    </div>
-                                                </TableCell>
-                                                <TableCell className="hidden sm:table-cell">
-                                                    Sale
-                                                </TableCell>
-                                                <TableCell className="hidden sm:table-cell">
-                                                    <Badge className="text-xs" variant="secondary">
-                                                        Fulfilled
-                                                    </Badge>
-                                                </TableCell>
-                                                <TableCell className="hidden md:table-cell">
-                                                    2023-06-23
-                                                </TableCell>
-                                                <TableCell className="text-right">$250.00</TableCell>
-                                            </TableRow>
-                                            <TableRow>
-                                                <TableCell>
-                                                    <div className="font-medium">Olivia Smith</div>
-                                                    <div className="hidden text-sm text-muted-foreground md:inline">
-                                                        olivia@example.com
-                                                    </div>
-                                                </TableCell>
-                                                <TableCell className="hidden sm:table-cell">
-                                                    Refund
-                                                </TableCell>
-                                                <TableCell className="hidden sm:table-cell">
-                                                    <Badge className="text-xs" variant="outline">
-                                                        Declined
-                                                    </Badge>
-                                                </TableCell>
-                                                <TableCell className="hidden md:table-cell">
-                                                    2023-06-24
-                                                </TableCell>
-                                                <TableCell className="text-right">$150.00</TableCell>
-                                            </TableRow>
-                                            <TableRow>
-                                                <TableCell>
-                                                    <div className="font-medium">Noah Williams</div>
-                                                    <div className="hidden text-sm text-muted-foreground md:inline">
-                                                        noah@example.com
-                                                    </div>
-                                                </TableCell>
-                                                <TableCell className="hidden sm:table-cell">
-                                                    Subscription
-                                                </TableCell>
-                                                <TableCell className="hidden sm:table-cell">
-                                                    <Badge className="text-xs" variant="secondary">
-                                                        Fulfilled
-                                                    </Badge>
-                                                </TableCell>
-                                                <TableCell className="hidden md:table-cell">
-                                                    2023-06-25
-                                                </TableCell>
-                                                <TableCell className="text-right">$350.00</TableCell>
-                                            </TableRow>
-                                            <TableRow>
-                                                <TableCell>
-                                                    <div className="font-medium">Emma Brown</div>
-                                                    <div className="hidden text-sm text-muted-foreground md:inline">
-                                                        emma@example.com
-                                                    </div>
-                                                </TableCell>
-                                                <TableCell className="hidden sm:table-cell">
-                                                    Sale
-                                                </TableCell>
-                                                <TableCell className="hidden sm:table-cell">
-                                                    <Badge className="text-xs" variant="secondary">
-                                                        Fulfilled
-                                                    </Badge>
-                                                </TableCell>
-                                                <TableCell className="hidden md:table-cell">
-                                                    2023-06-26
-                                                </TableCell>
-                                                <TableCell className="text-right">$450.00</TableCell>
-                                            </TableRow>
-                                            <TableRow>
-                                                <TableCell>
-                                                    <div className="font-medium">Liam Johnson</div>
-                                                    <div className="hidden text-sm text-muted-foreground md:inline">
-                                                        liam@example.com
-                                                    </div>
-                                                </TableCell>
-                                                <TableCell className="hidden sm:table-cell">
-                                                    Sale
-                                                </TableCell>
-                                                <TableCell className="hidden sm:table-cell">
-                                                    <Badge className="text-xs" variant="secondary">
-                                                        Fulfilled
-                                                    </Badge>
-                                                </TableCell>
-                                                <TableCell className="hidden md:table-cell">
-                                                    2023-06-23
-                                                </TableCell>
-                                                <TableCell className="text-right">$250.00</TableCell>
-                                            </TableRow>
-                                            <TableRow>
-                                                <TableCell>
-                                                    <div className="font-medium">Liam Johnson</div>
-                                                    <div className="hidden text-sm text-muted-foreground md:inline">
-                                                        liam@example.com
-                                                    </div>
-                                                </TableCell>
-                                                <TableCell className="hidden sm:table-cell">
-                                                    Sale
-                                                </TableCell>
-                                                <TableCell className="hidden sm:table-cell">
-                                                    <Badge className="text-xs" variant="secondary">
-                                                        Fulfilled
-                                                    </Badge>
-                                                </TableCell>
-                                                <TableCell className="hidden md:table-cell">
-                                                    2023-06-23
-                                                </TableCell>
-                                                <TableCell className="text-right">$250.00</TableCell>
-                                            </TableRow>
-                                            <TableRow>
-                                                <TableCell>
-                                                    <div className="font-medium">Olivia Smith</div>
-                                                    <div className="hidden text-sm text-muted-foreground md:inline">
-                                                        olivia@example.com
-                                                    </div>
-                                                </TableCell>
-                                                <TableCell className="hidden sm:table-cell">
-                                                    Refund
-                                                </TableCell>
-                                                <TableCell className="hidden sm:table-cell">
-                                                    <Badge className="text-xs" variant="outline">
-                                                        Declined
-                                                    </Badge>
-                                                </TableCell>
-                                                <TableCell className="hidden md:table-cell">
-                                                    2023-06-24
-                                                </TableCell>
-                                                <TableCell className="text-right">$150.00</TableCell>
-                                            </TableRow>
-                                            <TableRow>
-                                                <TableCell>
-                                                    <div className="font-medium">Emma Brown</div>
-                                                    <div className="hidden text-sm text-muted-foreground md:inline">
-                                                        emma@example.com
-                                                    </div>
-                                                </TableCell>
-                                                <TableCell className="hidden sm:table-cell">
-                                                    Sale
-                                                </TableCell>
-                                                <TableCell className="hidden sm:table-cell">
-                                                    <Badge className="text-xs" variant="secondary">
-                                                        Fulfilled
-                                                    </Badge>
-                                                </TableCell>
-                                                <TableCell className="hidden md:table-cell">
-                                                    2023-06-26
-                                                </TableCell>
-                                                <TableCell className="text-right">$450.00</TableCell>
-                                            </TableRow>
-                                        </TableBody>
-                                    </Table>
-                                </CardContent>
-                            </Card>
-                        </TabsContent>
-                    </div>
-                </main>
-            </Tabs>
-        </div>
-    )
+            <TabsContent value="villa">
+              <Card x-chunk="dashboard-05-chunk-3">
+                <CardHeader className="px-7">
+                  <CardTitle>Villas</CardTitle>
+                  <CardDescription>
+                    Latest villa rental properties available on Sarah Homestay.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead>#</TableHead>
+                        <TableHead>Image</TableHead>
+                        <TableHead>Name</TableHead>
+                        <TableHead className="hidden sm:table-cell">
+                          Location
+                        </TableHead>
+                        <TableHead className="hidden sm:table-cell">
+                          Unit Type
+                        </TableHead>
+                        <TableHead className="hidden sm:table-cell">
+                          Featured
+                        </TableHead>
+                        <TableHead className="text-right">
+                          Price/Night
+                        </TableHead>
+                        <TableHead className="text-right">Ratings</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {roomsData
+                        .filter((home) => home.unitType === "villa") // Filter for villa unit type
+                        .map((home, index) => (
+                          <TableRow key={home.id}>
+                            <TableCell>{index + 1}</TableCell>
+                            <TableCell>
+                              <img
+                                src={home.roomPhoto}
+                                alt={home.homeName}
+                                className="w-12 h-12 rounded-md"
+                              />
+                            </TableCell>
+                            <TableCell className="font-medium">
+                              {home.homeName}
+                            </TableCell>
+                            <TableCell className="hidden sm:table-cell">
+                              {home.location}
+                            </TableCell>
+                            <TableCell className="hidden sm:table-cell">
+                              {home.unitType}
+                            </TableCell>
+                            <TableCell className="hidden sm:table-cell">
+                              {home.featured ? (
+                                <Badge className="text-xs" variant="secondary">
+                                  Yes
+                                </Badge>
+                              ) : (
+                                <Badge className="text-xs" variant="outline">
+                                  No
+                                </Badge>
+                              )}
+                            </TableCell>
+                            <TableCell className="text-right">
+                              Ksh {home.priceNight}
+                            </TableCell>
+                            <TableCell className="text-right">
+                              {home.ratings} ★
+                            </TableCell>
+                          </TableRow>
+                        ))}
+                    </TableBody>
+                  </Table>
+                </CardContent>
+              </Card>
+            </TabsContent>
+          </div>
+        </main>
+      </Tabs>
+    </div>
+  );
 }
 
-export default RoomManagement
+export default RoomManagement;

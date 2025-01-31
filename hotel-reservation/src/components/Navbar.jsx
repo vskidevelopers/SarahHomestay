@@ -1,7 +1,7 @@
 import { Fragment, useEffect, useState } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import { auth, useAuthenticationFunctions } from "@/utils/firebase";
+import { auth, useAuthenticationFunctions } from "@/firebase/firebase";
 import { useNavigate } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
 import {

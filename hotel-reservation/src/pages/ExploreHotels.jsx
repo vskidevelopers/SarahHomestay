@@ -1,24 +1,23 @@
 import HeroSection from "@/components/HeroSection";
-import HotelListings from "@/sections/HotelListings";
-import { useHotelFunctions } from "@/utils/firebase";
+
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import homeStayLogo from "/sarahome-logo.svg";
-import { Construction } from "lucide-react";
+
 import HomeGrids from "@/sections/HomesGrid";
+import { useHomeFunctions } from "@/firebase/firebase";
 
 function ExploreHotels() {
   const [searchParams] = useSearchParams();
   const type = searchParams.get("type");
 
-  const { getAllApprovedHotels, getHotelByLocation } = useHotelFunctions();
+  const { getHomes, getHomesByLocation } = useHomeFunctions();
   const [hotels, setHotels] = useState([]);
   const [hotelsByParams, setHotelsByParams] = useState([]);
   const [error, setError] = useState("");
 
   const FetchHotelsByParams = async (searchParams) => {
     try {
-      const hotelResponse = await getHotelByLocation(searchParams);
+      const hotelResponse = await getHomesByLocation(searchParams);
 
       if (hotelResponse?.success) {
         console.log("hotelResponse by params >> ", hotelResponse);
@@ -39,7 +38,7 @@ function ExploreHotels() {
 
   const fetchHotels = async () => {
     try {
-      const hotelResponse = await getAllApprovedHotels();
+      const hotelResponse = await getHomes();
 
       if (hotelResponse?.success) {
         console.log("hotelResponse >> ", hotelResponse);
@@ -77,12 +76,12 @@ function ExploreHotels() {
       <div>
         <HeroSection
           title="Explore Our Homes"
-          image="https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg"
+          image="https://firebasestorage.googleapis.com/v0/b/sarah-homestay.firebasestorage.app/o/web%20assets%2FIMG-20250122-WA0023.jpg?alt=media&token=713433e8-698a-4300-9593-d11b0312566c"
         />{" "}
       </div>
 
       <div>
-<HomeGrids />
+        <HomeGrids homes={hotels} />
       </div>
     </div>
   );
