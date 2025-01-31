@@ -6,31 +6,31 @@ import { useEffect } from "react";
 import { auth } from "@/utils/firebase";
 
 export default function PrivateRoutes() {
-    const [authUser, setAuthUser] = useState();
+  const [authUser, setAuthUser] = useState();
 
-    const user = auth.currentUser;
+  // const user = auth.currentUser;
 
-    // const user = true;
-    const navigate = useNavigate();
-    const location = useLocation();
+  const user = true;
+  const navigate = useNavigate();
+  const location = useLocation();
 
-    useEffect(() => {
-        const fetchUser = () => {
-            if (user) {
-                console.log("User exists >>", user);
-                setAuthUser(user);
-                navigate("/admin");
-            } else {
-                alert("access denied!");
-            }
-        };
+  useEffect(() => {
+    const fetchUser = () => {
+      if (user) {
+        console.log("User exists >>", user);
+        setAuthUser(user);
+        navigate("/admin");
+      } else {
+        alert("access denied!");
+      }
+    };
 
-        fetchUser();
-    }, []);
+    fetchUser();
+  }, []);
 
-    return authUser ? (
-        <Outlet />
-    ) : (
-        <Navigate to="/login" state={{ from: location }} replace />
-    );
+  return authUser ? (
+    <Outlet />
+  ) : (
+    <Navigate to="/login" state={{ from: location }} replace />
+  );
 }
