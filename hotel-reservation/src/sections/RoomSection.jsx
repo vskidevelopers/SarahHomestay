@@ -8,6 +8,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"; 
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 const RoomSection = () => {
 
@@ -81,20 +82,20 @@ const RoomSection = () => {
             {/* Book Now Button */}
             <Dialog>
       <DialogTrigger asChild>
-      <Button
-
-              className="text-white bg-gray-700 hover:bg-gray-900 px-6 py-4 rounded-lg text-lg font-medium"
-            >
-              Book Now
-            </Button>
+        <Button className="text-white bg-gray-700 hover:bg-gray-900 px-6 py-4 rounded-lg text-lg font-medium">
+          Book Now
+        </Button>
       </DialogTrigger>
-      <DialogContent className="w-full" >
+
+      <DialogContent className="w-full max-w-md p-4">
         <DialogHeader>
           <DialogTitle>Book This Room</DialogTitle>
-
         </DialogHeader>
-<FeaturedRoomBookingForm / >
 
+        {/* Adding ScrollArea with responsive class */}
+        <ScrollArea className="h-80 md:h-96 lg:h-[calc(100vh-8rem)] overflow-auto">
+          <FeaturedRoomBookingForm />
+        </ScrollArea>
       </DialogContent>
     </Dialog>
 

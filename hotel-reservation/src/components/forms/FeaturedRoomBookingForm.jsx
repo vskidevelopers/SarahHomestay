@@ -1,15 +1,19 @@
 import { useForm } from "react-hook-form";
+import {useToast } from "@/hooks/use-toast"
 
 function FeaturedRoomBookingForm() {
+  const { toast } = useToast()
     const {
         register,
         handleSubmit,
         formState: { errors },
+        reset
       } = useForm();
     
       const onSubmit = (data) => {
         console.log("Form Data:", data);
-        alert("Booking Submitted!");
+        toast({title:"Booking Submitted!"});
+        reset()
       };
     
       return (
